@@ -1,0 +1,4 @@
+markitdown[pdf]
+click
+google-generativeai
+pytest
