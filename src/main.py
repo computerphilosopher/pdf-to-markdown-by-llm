@@ -8,8 +8,8 @@ result to a new file.
 """
 import click
 from pathlib import Path
-from src.converter import convert_pdf_to_markdown
-from src.post_processor import refine_markdown
+from .converter import convert_pdf_to_markdown
+from .post_processor import refine_markdown
 
 @click.command()
 @click.argument('pdf_path', type=click.Path(exists=True))

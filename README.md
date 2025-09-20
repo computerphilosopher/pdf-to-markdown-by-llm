@@ -38,18 +38,18 @@ This is a Python-based command-line tool to convert PDF files into high-quality,
 
 ## Usage
 
-To convert a PDF, run the following command:
+To convert a PDF, run the following command from the project's root directory:
 
 ```bash
-python src/main.py /path/to/your/file.pdf
+python -m src.main /path/to/your/file.pdf
 ```
 
-The tool will create a new Markdown file with the same name as the input PDF but with a `.md` extension (e.g., `file.md`) in the same directory.
+The tool will create a new Markdown file in the `markdown/` directory.
 
 ### Example
 
 ```bash
-python src/main.py "examples/sample.pdf"
+python -m src.main pdf/sample.pdf
 ```
 
 Output:
