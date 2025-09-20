@@ -7,10 +7,11 @@ with a prompt to refine it, and returns the improved version.
 import os
 import concurrent.futures
 import functools
+from typing import Dict
 import google.generativeai as genai
 
 
-def _refine_chunk(chunk: str, model: genai.GenerativeModel, generation_config: dict) -> str:
+def _refine_chunk(chunk: str, model: genai.GenerativeModel, generation_config: Dict) -> str:
     """
     Sends a single chunk of Markdown to the Gemini API for refinement.
 

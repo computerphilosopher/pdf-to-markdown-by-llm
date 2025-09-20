@@ -8,28 +8,32 @@ result to a new file.
 """
 import click
 from pathlib import Path
-from .converter import convert_pdf_to_markdown
+from .converters.markitdown_converter import MarkitdownConverter
 from .post_processor import refine_markdown
 
 @click.command()
 @click.argument('pdf_path', type=click.Path(exists=True))
-def cli(pdf_path):
+def cli(pdf_path: str) -> None:
     """
     Converts a PDF file to a refined Markdown file.
     """
-    pdf_path = Path(pdf_path)
-    click.echo(f"Converting {pdf_path.name}...")
+    pdf_path_obj = Path(pdf_path)
+    click.echo(f"Converting {pdf_path_obj.name}...")
 
     try:
-        raw_markdown = convert_pdf_to_markdown(pdf_path)
+        # 1. Instantiate and use the converter
+        converter = MarkitdownConverter()
+        raw_markdown = converter.convert(pdf_path_obj)
+        
+        # 2. Post-process the result
         click.echo("Refining Markdown with Gemini...")
-
         refined_markdown = refine_markdown(raw_markdown)
 
+        # 3. Save the output
         output_dir = Path("markdown")
         output_dir.mkdir(exist_ok=True)
-        output_path = output_dir / pdf_path.with_suffix('.md').name
-        with open(output_path, 'w') as f:
+        output_path = output_dir / pdf_path_obj.with_suffix('.md').name
+        with open(output_path, 'w', encoding='utf-8') as f:
             f.write(refined_markdown)
 
         click.echo(f"Successfully created {output_path}")
