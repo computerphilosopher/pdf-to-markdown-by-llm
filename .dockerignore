@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Python
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.flake8
+
+# Project specific
+pdf/
+markdown/
+specs/
+.specify/
+.gemini/
+README.md
+LICENSE
+GEMINI.md
+pyproject.toml
+requirements.txt
+tests/
